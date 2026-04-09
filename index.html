@@ -6,7 +6,6 @@
 <title>Zenith Website</title>
     
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
     
 <style>
 *,
@@ -17,6 +16,40 @@
     padding:0;
     user-select:none;
     -webkit-user-drag:none;
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+}
+
+button,
+.btn,
+a,
+div{
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+}
+
+button:focus,
+button:active,
+.btn:focus,
+.btn:active,
+a:focus,
+a:active{
+    outline: none;
+    box-shadow: none;
+}
+
+img{
+    -webkit-user-drag: none;
+    user-drag: none;
+    pointer-events: none;
+}
+
+::selection{
+    background: transparent;
+}
+
+::-webkit-selection{
+    background: transparent;
 }
 
 :root{
@@ -374,4 +407,4 @@ if(statusText.includes("working")){
 </script>
 
 </body>
-  </html>
+</html>
