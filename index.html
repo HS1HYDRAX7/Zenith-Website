@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zenith Website</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+*,
+*::before,
+*::after{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    user-select:none;
+    -webkit-user-drag:none;
+}
+
+:root{
+    --bg:#0b0b0b;
+    --bg2:#120000;
+    --card:#140000;
+    --accent:#ff0000;
+    --accent2:#8a0000;
+    --border:#2a0000;
+    --text:#ffffff;
+    --muted:#9a9a9a;
+    --radius:22px;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:radial-gradient(circle at top,var(--bg2),var(--bg) 70%);
+    color:var(--text);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    min-height:100vh;
+    overflow-x:hidden;
+}
+
+.wrapper{
+    width:100%;
+    max-width:1100px;
+    padding:20px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
+.logo{
+    width:clamp(260px,40vw,460px);
+    margin-top:50px;
+    filter:drop-shadow(0 0 25px rgba(255,0,0,.35));
+    animation:fadeDown .8s ease;
+    pointer-events:none;
+}
+
+.status{
+    margin-top:20px;
+    text-align:center;
+}
+
+.status-title{
+    font-size:14px;
+    color:var(--muted);
+    letter-spacing:1px;
+}
+
+.status-line{
+    margin-top:6px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    font-weight:500;
+}
+
+.dot-status{
+    width:10px;
+    height:10px;
+    border-radius:50%;
+}
+
+.working .dot-status{background:#0f7a2f;}
+.updating .dot-status{background:#d4a017;}
+.down .dot-status{background:#ff0000;}
+
+.buttons{
+    margin-top:40px;
+    width:100%;
+    max-width:420px;
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+}
+
+.btn{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:12px;
+    width:100%;
+    padding:16px;
+    border-radius:999px;
+    background:linear-gradient(135deg,#1a0000,#120000);
+    border:1px solid var(--border);
+    cursor:pointer;
+    transition:.25s;
+    font-weight:500;
+    letter-spacing:.3px;
+}
+
+.btn img{
+    height:22px;
+    pointer-events:none;
+}
+
+.btn:hover{
+    transform:translateY(-3px) scale(1.02);
+    background:linear-gradient(135deg,#2a0000,#180000);
+    box-shadow:0 10px 30px rgba(255,0,0,.25);
+}
+
+.btn:focus,
+.btn:active{
+    outline:none;
+}
+
+.grid{
+    margin-top:50px;
+    width:100%;
+    display:grid;
+    grid-template-columns:1fr;
+    gap:30px;
+}
+
+.card{
+    width:100%;
+    max-width:480px;
+    margin:auto;
+    border-radius:var(--radius);
+    overflow:hidden;
+    background:linear-gradient(180deg,#1a0000,#0a0000);
+    border:1px solid var(--border);
+    animation:fadeUp .8s ease;
+}
+
+.card-header{
+    display:flex;
+    align-items:center;
+    padding:10px 14px;
+    background:#110000;
+    gap:6px;
+}
+
+.dot{
+    width:10px;
+    height:10px;
+    border-radius:50%;
+}
+
+.red{background:#ff5f56;}
+.yellow{background:#ffbd2e;}
+.green{background:#27c93f;}
+
+.title{
+    margin-left:10px;
+    font-size:12px;
+    color:var(--muted);
+}
+
+.card-body{
+    padding:18px;
+    font-family:monospace;
+    font-size:13px;
+    color:#d0d0d0;
+    background:#080000;
+    word-break:break-word;
+}
+
+.card-footer{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:14px;
+    border-top:1px solid var(--border);
+}
+
+.line{
+    flex:1;
+    height:2px;
+    background:linear-gradient(90deg,transparent,#550000,transparent);
+}
+
+.copy-btn{
+    border:none;
+    padding:8px 18px;
+    border-radius:14px;
+    background:linear-gradient(135deg,var(--accent),var(--accent2));
+    color:white;
+    font-size:12px;
+    cursor:pointer;
+    transition:.25s;
+}
+
+.copy-btn:hover{
+    transform:scale(1.07);
+    box-shadow:0 0 18px rgba(255,0,0,.5);
+}
+
+.copy-btn.copied{
+    background:#27c93f;
+}
+
+.footer{
+    margin-top:60px;
+    margin-bottom:20px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    opacity:.85;
+}
+
+.footer-text{
+    display:flex;
+    flex-direction:column;
+    line-height:1;
+}
+
+.powered{
+    font-size:12px;
+    color:var(--muted);
+}
+
+.html{
+    font-size:34px;
+    font-weight:700;
+}
+
+.icon{
+    height:34px;
+    margin-top:10px;
+    pointer-events:none;
+}
+
+@media (min-width:700px){
+    .grid{
+        grid-template-columns:1fr 1fr;
+    }
+}
+
+@media (min-width:1000px){
+    .buttons{
+        flex-direction:row;
+        max-width:600px;
+    }
+}
+
+@keyframes fadeDown{
+    from{opacity:0;transform:translateY(-20px);}
+    to{opacity:1;transform:translateY(0);}
+}
+
+@keyframes fadeUp{
+    from{opacity:0;transform:translateY(25px);}
+    to{opacity:1;transform:translateY(0);}
+}
+</style>
+</head>
+
+<body oncontextmenu="return false">
+
+<div class="wrapper">
+
+<img class="logo" src="https://raw.githubusercontent.com/HS1HYDRAX7/Zenith-Website/refs/heads/main/sources/zenith.png">
+
+<div class="status working" id="statusBox">
+    <div class="status-title">LOADER STATUS</div>
+    <div class="status-line">
+        <div class="dot-status"></div>
+        <span id="statusText">Working</span>
+    </div>
+</div>
+
+<div class="buttons">
+    <div class="btn" onclick="window.open('https://discord.gg/TSrKJKauCE')">
+        <img src="https://raw.githubusercontent.com/HS1HYDRAX7/Zenith-Website/refs/heads/main/sources/discord.png">
+        Discord
+    </div>
+
+    <div class="btn" onclick="window.open('https://www.tiktok.com/@atlasscriptss')">
+        <img src="https://raw.githubusercontent.com/HS1HYDRAX7/Zenith-Website/refs/heads/main/sources/tktk.png">
+        TikTok
+    </div>
+</div>
+
+<div class="grid">
+
+<div class="card">
+    <div class="card-header">
+        <div class="dot red"></div>
+        <div class="dot yellow"></div>
+        <div class="dot green"></div>
+        <div class="title">loader.lua</div>
+    </div>
+
+    <div class="card-body">
+loadstring(game:HttpGet("https://raw.githubusercontent.com/HS1HYDRAX7/Elysium-X-Rework/refs/heads/main/Elysium%20X%20Rework"))()
+    </div>
+
+    <div class="card-footer">
+        <div class="line"></div>
+        <button class="copy-btn" id="copyBtn">Copy</button>
+    </div>
+</div>
+
+</div>
+
+<div class="footer">
+    <div class="footer-text">
+        <span class="powered">Powered by</span>
+        <span class="html">HTML</span>
+    </div>
+    <img class="icon" src="https://quandz24-ui.github.io/OriginWEB/originData/HTML5.png">
+</div>
+
+</div>
+
+<script>
+const scriptText=`loadstring(game:HttpGet("https://raw.githubusercontent.com/HS1HYDRAX7/Elysium-X-Rework/refs/heads/main/Elysium%20X%20Rework"))()`;
+
+const copyBtn=document.getElementById("copyBtn");
+
+copyBtn.addEventListener("click",async ()=>{
+    try{
+        await navigator.clipboard.writeText(scriptText);
+    }catch{
+        const textarea=document.createElement("textarea");
+        textarea.value=scriptText;
+        textarea.style.position="fixed";
+        textarea.style.opacity="0";
+        document.body.appendChild(textarea);
+        textarea.focus();
+        textarea.select();
+        document.execCommand("copy");
+        document.body.removeChild(textarea);
+    }
+
+    copyBtn.innerText="Copied!";
+    copyBtn.classList.add("copied");
+
+    setTimeout(()=>{
+        copyBtn.innerText="Copy";
+        copyBtn.classList.remove("copied");
+    },1500);
+});
+
+const statusText=document.getElementById("statusText").innerText.toLowerCase();
+const statusBox=document.getElementById("statusBox");
+
+statusBox.classList.remove("working","updating","down");
+
+if(statusText.includes("working")){
+    statusBox.classList.add("working");
+}else if(statusText.includes("updating")||statusText.includes("outdated")){
+    statusBox.classList.add("updating");
+}else if(statusText.includes("down")){
+    statusBox.classList.add("down");
+}
+</script>
+
+</body>
+  </html>
