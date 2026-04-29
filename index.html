@@ -369,14 +369,12 @@ body::after{
 </head>
 <body>
 
-<!-- Loading -->
 <div id="loadingScreen">
   <div class="load-logo">ZENITH</div>
   <div class="load-bar"><div class="load-fill"></div></div>
   <div class="load-text">INITIALIZING...</div>
 </div>
 
-<!-- Navbar -->
 <div class="navbar">
   <div class="nav-left">ZENITH</div>
   <div class="nav-right">
@@ -404,7 +402,6 @@ body::after{
     <div class="updates-section">
       <div class="section-label">LATEST UPDATE</div>
 
-      <!-- Embed card -->
       <div class="embed">
         <div class="embed-header">
           <div class="embed-icon">!</div>
@@ -449,7 +446,6 @@ body::after{
 </div>
 </div>
 
-<!-- Footer -->
 <div class="footer">
   <span>© 2025 ZENITH. All rights reserved.</span>
   <span id="footerTime"></span>
@@ -472,7 +468,7 @@ copyBtn.onclick = async () => {
     t.value = scriptText; document.body.appendChild(t); t.select();
     document.execCommand('copy'); t.remove();
   }
-  copyBtn.innerText = 'Copied!';
+  copyBtn.innerText = 'Script Copied!';
   copyBtn.classList.add('copied');
   setTimeout(() => { copyBtn.innerText = 'Copy Script'; copyBtn.classList.remove('copied'); }, 1500);
 };
